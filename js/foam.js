@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    var imageUrl = "images/foam.png";
+    var imageUrl = "https://deepseacat.moe/images/foam.png";
 
     function createImage() {
         var img = new Image();
