@@ -68,7 +68,6 @@ function showNext() {
 // ページ読み込み時に記事を読み込む
 window.onload = function () {
 
-  loadArticles();
   fetch('/content.json')
   .then(response => response.json())
   .then(data => {
@@ -78,6 +77,7 @@ window.onload = function () {
     updateTagCounts(); // タグに一致する記事の数を更新
   })
   .catch(error => console.error('データを読み込めませんでした:', error));
+  loadArticles();
 };
 
 // 日付を20yy年mm月dd日の形式に変換する関数
