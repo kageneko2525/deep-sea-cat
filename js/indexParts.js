@@ -18,15 +18,3 @@ function loadSidemenuScript() {
 
 
 
-fetch("/images/favicon.jpg")
-.then((response) => {
-    if(response.ok) {
-        const link = document.createElement('link');
-        link.rel = 'icon';
-        link.href = '/images/favicon.jpg';
-        document.head.appendChild(link);
-    }
-})
-.catch((error) => {
-    console.error('Failed to set favicon:', error);
-});
