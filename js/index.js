@@ -10,7 +10,7 @@ function loadArticles() {
   document.querySelectorAll('.tag').forEach(tagElement => {
     tagElement.setAttribute('onclick', 'tagClick(this)');
   });
-  fetch('/content.json')
+  fetch('/contents.json')
     .then(response => response.json())
     .then(data => {
       articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
@@ -70,26 +70,66 @@ function showNext() {
 window.onload = function () {
 
 
-    fetch('/content.json')
+    fetch('/contents.json')
       .then(response => response.json())
       .then(data => {
         articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
         currentIndex = 0;
         showArticles();
-        updateTagCounts(); // タグに一致する記事の数を更新
       })
       .catch(error => console.error('データを読み込めませんでした:', error));
 
-  fetch('/content.json')
+  fetch('/contents.json')
     .then(response => response.json())
     .then(data => {
       articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
       currentIndex = 0;
-      updateTagCounts(); // タグに一致する記事の数を更新
       loadArticles();
       showArticles();
     })
     .catch(error => console.error('データを読み込めませんでした:', error));
+
+    fetch('/contents.json')
+    .then(response => response.json())
+    .then(data => {
+      let tagCounts = {}; // タグとその出現回数を格納するオブジェクト
+  
+      // 全ての投稿をループ
+      data.forEach(post => {
+        // 各投稿のタグを取得し、タグごとにカウントを行う
+        post.tags.forEach(tag => {
+          if (tagCounts[tag]) {
+            tagCounts[tag]++;
+          } else {
+            tagCounts[tag] = 1;
+          }
+        });
+      });
+  
+      // タグを出現回数でソート
+      let sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+  
+      // ソートされたタグをHTMLに追加
+      let sideMenu = document.querySelector('.side_menu');
+      sortedTags.forEach(([tag, count]) => {
+        let tagElement = document.createElement('div');
+        let paragraph = document.createElement('p'); // pタグを作成
+        paragraph.textContent = `${tag} (${count})`;
+        paragraph.classList.add('tag'); // 'tag' クラスをpタグに追加
+        paragraph.dataset.tag = tag; // データ属性にタグ名を追加
+        paragraph.onclick = function() { tagClick(this); }; // onclickイベントを追加
+        tagElement.appendChild(paragraph); // pタグをdivタグに追加
+        sideMenu.appendChild(tagElement);
+      });
+    })
+    .catch(error => console.error('Error:', error));
+  
+  // タグがクリックされたときの処理
+ 
+
+  
+  
+  
 };
 
 // 日付を20yy年mm月dd日の形式に変換する関数
@@ -102,13 +142,12 @@ function formatDate(dateString) {
 // 「すべて」のタグをクリックしたときにすべての記事を表示する関数
 document.querySelectorAll('.allTag').forEach(item => {
   item.addEventListener('click', event => {
-    fetch('/content.json')
+    fetch('/contents.json')
       .then(response => response.json())
       .then(data => {
         articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
         currentIndex = 0;
         showArticles();
-        updateTagCounts(); // タグに一致する記事の数を更新
       })
       .catch(error => console.error('データを読み込めませんでした:', error));
   });
@@ -120,13 +159,12 @@ document.querySelectorAll('.allTag').forEach(item => {
 
 function allTagClick() {
   {
-    fetch('/content.json')
+    fetch('/contents.json')
       .then(response => response.json())
       .then(data => {
         articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
         currentIndex = 0;
         showArticles();
-        updateTagCounts(); // タグに一致する記事の数を更新
       })
       .catch(error => console.error('データを読み込めませんでした:', error));
   }
@@ -140,7 +178,7 @@ function tagClick(p) {
     // クリックされた要素がタグの場合のみ処理を実行
 
     const tag = p.dataset.tag;
-    fetch('/content.json')
+    fetch('/contents.json')
       .then(response => response.json())
       .then(data => {
         const taggedArticles = data.filter(article => article.tags.includes(tag));
@@ -148,7 +186,6 @@ function tagClick(p) {
         currentIndex = 0;
 
         showArticles();
-        updateTagCounts(); // タグに一致する記事の数を更新
       })
       .catch(error => console.error('データを読み込めませんでした:', error));
 
@@ -164,19 +201,18 @@ document.querySelectorAll('.tag').forEach(item => {
     // クリックされた要素がタグの場合のみ処理を実行
     if (event.target.classList.contains('tag')) {
       const tag = event.target.dataset.tag;
-      fetch('/content.json')
+      fetch('/contents.json')
         .then(response => response.json())
         .then(data => {
           const taggedArticles = data.filter(article => article.tags.includes(tag));
           articles = taggedArticles.sort((a, b) => b.post_date.localeCompare(a.post_date));
           currentIndex = 0;
           showArticles();
-          updateTagCounts(); // タグに一致する記事の数を更新
         })
         .catch(error => console.error('データを読み込めませんでした:', error));
     } else if (event.target.classList.contains('tagCount')) {
       const tag = event.target.parentNode.dataset.tag;
-      fetch('/content.json')
+      fetch('/contents.json')
         .then(response => response.json())
         .then(data => {
           const taggedArticles = data.filter(article => article.tags.includes(tag));
@@ -184,27 +220,12 @@ document.querySelectorAll('.tag').forEach(item => {
           currentIndex = 0;
 
           showArticles();
-          updateTagCounts(); // タグに一致する記事の数を更新
         })
         .catch(error => console.error('データを読み込めませんでした:', error));
     }
   });
 });
 
-// すべてのタグの記事数を更新する関数
-function updateTagCounts() {
-  const tags = document.querySelectorAll('.tag');
-  tags.forEach(tag => {
-    const tagName = tag.dataset.tag;
-    fetch('/content.json')
-      .then(response => response.json())
-      .then(data => {
-        const taggedArticles = data.filter(article => article.tags.includes(tagName));
-        tag.querySelector('.tagCount').textContent = taggedArticles.length;
-      })
-      .catch(error => console.error('データを読み込めませんでした:', error));
-  });
-}
 
 
 function updateIndexContent(startIndex, plusIndex) {
@@ -217,3 +238,5 @@ function updateIndexContent(startIndex, plusIndex) {
   // div要素の内容を新しいテキストに変更
   indexDiv.textContent = newText;
 }
+
+
