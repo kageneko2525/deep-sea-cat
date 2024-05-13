@@ -32,6 +32,7 @@ function showArticles() {
     const link = document.createElement('a');
     link.href = article.path;
     const articleDiv = document.createElement('div');
+    articleDiv.className = "contents";
     const heading = document.createElement('h2');
     heading.textContent = article.title;
     const dateParagraph = document.createElement('p');
@@ -69,15 +70,15 @@ function showNext() {
 window.onload = function () {
 
   fetch('/content.json')
-  .then(response => response.json())
-  .then(data => {
-    articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
-    currentIndex = 0;
-  })
-  .catch(error => console.error('データを読み込めませんでした:', error));
-    showArticles();
-    updateTagCounts(); // タグに一致する記事の数を更新
-  loadArticles();
+    .then(response => response.json())
+    .then(data => {
+      articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
+      currentIndex = 0;
+      updateTagCounts(); // タグに一致する記事の数を更新
+      loadArticles();
+      showArticles();
+    })
+    .catch(error => console.error('データを読み込めませんでした:', error));
 };
 
 // 日付を20yy年mm月dd日の形式に変換する関数
@@ -134,7 +135,7 @@ function tagClick(p) {
         const taggedArticles = data.filter(article => article.tags.includes(tag));
         articles = taggedArticles.sort((a, b) => b.post_date.localeCompare(a.post_date));
         currentIndex = 0;
-      
+
         showArticles();
         updateTagCounts(); // タグに一致する記事の数を更新
       })
@@ -199,9 +200,9 @@ function updateIndexContent(startIndex, plusIndex) {
   // indexというIDを持つdiv要素を取得
 
   const indexDiv = document.getElementById('index');
-  const endIndex =  plusIndex;
+  const endIndex = plusIndex;
   // startIndexからendIndexまでの範囲を表示するテキストを作成
-  const newText = `${startIndex + 1}件目から${endIndex }件目までの内容を表示中`;
+  const newText = `${startIndex + 1}件目から${endIndex}件目までの内容を表示中`;
   // div要素の内容を新しいテキストに変更
   indexDiv.textContent = newText;
 }
