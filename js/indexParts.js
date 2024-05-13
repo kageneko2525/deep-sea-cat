@@ -8,9 +8,16 @@ fetch("/parts/indexMenu.html")
     document.querySelector("#sideMenu_box").innerHTML = data;
     loadSidemenuScript(); 
 });
+function loadSidemenuScript() {
+    const script = document.createElement('script');
+    script.src = '/js/tags.js';
+    document.body.appendChild(script); 
+}
 
 function loadSidemenuScript() {
     const script = document.createElement('script');
     script.src = '/js/sideMenu.js';
     document.body.appendChild(script); 
 }
+
+
