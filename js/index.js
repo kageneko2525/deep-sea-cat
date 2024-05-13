@@ -69,6 +69,17 @@ function showNext() {
 // ページ読み込み時に記事を読み込む
 window.onload = function () {
 
+
+    fetch('/content.json')
+      .then(response => response.json())
+      .then(data => {
+        articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
+        currentIndex = 0;
+        showArticles();
+        updateTagCounts(); // タグに一致する記事の数を更新
+      })
+      .catch(error => console.error('データを読み込めませんでした:', error));
+
   fetch('/content.json')
     .then(response => response.json())
     .then(data => {
