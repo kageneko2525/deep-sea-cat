@@ -2,7 +2,7 @@ let articles = [];
 let currentIndex = 0;
 const articlesPerPage = 10;
 console.log("見てくれてありがとう！")
-console.log("ソースコードはgithubで公開予定だよ！")
+console.log("ソースコードはgithubで公開してるよ！")
 console.log("よかったら改善点教えてね！")
 
 // JSONファイルからデータを読み込む関数
