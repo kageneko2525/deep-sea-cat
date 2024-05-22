@@ -11,14 +11,15 @@ menuBtn.onclick = function () {
     }
 }
 
-window.onclick = function (event) {
+window.onload = function() {
+  window.onclick = function (event) {
     if (!sideMenu.contains(event.target) && event.target !== menuBtn) {
-        sideMenu.style.width = '0'; 
+      sideMenu.style.width = '0'; 
     }
+  } 
 }
 
-
-fetch('/contents.json')
+fetch('/articles.json')
 .then(response => response.json())
 .then(data => {
   let tagCounts = {}; // タグとその出現回数を格納するオブジェクト

@@ -1,16 +1,26 @@
-let articles = [];
-let currentIndex = 0;
-const articlesPerPage = 10;
 console.log("見てくれてありがとう！")
 console.log("ソースコードはgithubで公開してるよ！")
 console.log("よかったら改善点教えてね！")
 
+//記事の格納
+let articles = [];
+
+//何番目の記事か
+let currentIndex = 0;
+
+//記事の表示件数
+const articlesPerPage = 10;
+
 // JSONファイルからデータを読み込む関数
 function loadArticles() {
+
+  //tagクラスにクリック時関数を実行するようにする
   document.querySelectorAll('.tag').forEach(tagElement => {
     tagElement.setAttribute('onclick', 'tagClick(this)');
   });
-  fetch('/contents.json')
+
+  //jsonから記事を取得し格納
+  fetch('/articles.json')
     .then(response => response.json())
     .then(data => {
       articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
@@ -18,21 +28,25 @@ function loadArticles() {
       // 記事の総数を表示
       document.querySelector('.allTagCount').textContent = articles.length;
     })
-    .catch(error => console.error('データを読み込めませんでした:', error));
+    
 }
 
 // 記事を表示する関数
 function showArticles() {
+
+  //記事格納変数
   const articlesContainer = document.getElementById('articles');
+
+  //記事をリセット
   articlesContainer.innerHTML = '';
   const endIndex = Math.min(currentIndex + articlesPerPage, articles.length);
-  updateIndexContent(currentIndex, endIndex);
+  updateIndexArticles(currentIndex, endIndex);
   for (let i = currentIndex; i < endIndex; i++) {
     const article = articles[i];
     const link = document.createElement('a');
     link.href = article.path;
     const articleDiv = document.createElement('div');
-    articleDiv.className = "contents";
+    articleDiv.className = "articles";
     const heading = document.createElement('h2');
     heading.textContent = article.title;
     const dateParagraph = document.createElement('p');
@@ -69,16 +83,15 @@ function showNext() {
 window.onload = function () {
 
 
-  fetch('/contents.json')
+  fetch('/articles.json')
     .then(response => response.json())
     .then(data => {
       articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
       currentIndex = 0;
       showArticles();
     })
-    .catch(error => console.error('データを読み込めませんでした:', error));
 
-  fetch('/contents.json')
+  fetch('/articles.json')
     .then(response => response.json())
     .then(data => {
       articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
@@ -86,7 +99,6 @@ window.onload = function () {
       loadArticles();
       showArticles();
     })
-    .catch(error => console.error('データを読み込めませんでした:', error));
 
 
 
@@ -103,43 +115,40 @@ function formatDate(dateString) {
 // 「すべて」のタグをクリックしたときにすべての記事を表示する関数
 document.querySelectorAll('.allTag').forEach(item => {
   item.addEventListener('click', event => {
-    fetch('/contents.json')
+    fetch('/articles.json')
       .then(response => response.json())
       .then(data => {
         articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
         currentIndex = 0;
         showArticles();
       })
-      .catch(error => console.error('データを読み込めませんでした:', error));
   });
 });
 
 
 
 
-
+//allタグクリック時すべての記事を表示する関数
 function allTagClick() {
   {
-    fetch('/contents.json')
+    fetch('/articles.json')
       .then(response => response.json())
       .then(data => {
         articles = data.sort((a, b) => b.post_date.localeCompare(a.post_date));
         currentIndex = 0;
         showArticles();
       })
-      .catch(error => console.error('データを読み込めませんでした:', error));
   }
 }
 
 
 
-
+//タグをクリックしたときそのタグの記事を表示する関数
 function tagClick(p) {
   {
-    // クリックされた要素がタグの場合のみ処理を実行
-
+   
     const tag = p.dataset.tag;
-    fetch('/contents.json')
+    fetch('/articles.json')
       .then(response => response.json())
       .then(data => {
         const taggedArticles = data.filter(article => article.tags.includes(tag));
@@ -148,7 +157,6 @@ function tagClick(p) {
 
         showArticles();
       })
-      .catch(error => console.error('データを読み込めませんでした:', error));
 
   }
 }
@@ -162,7 +170,7 @@ document.querySelectorAll('.tag').forEach(item => {
     // クリックされた要素がタグの場合のみ処理を実行
     if (event.target.classList.contains('tag')) {
       const tag = event.target.dataset.tag;
-      fetch('/contents.json')
+      fetch('/articles.json')
         .then(response => response.json())
         .then(data => {
           const taggedArticles = data.filter(article => article.tags.includes(tag));
@@ -170,10 +178,9 @@ document.querySelectorAll('.tag').forEach(item => {
           currentIndex = 0;
           showArticles();
         })
-        .catch(error => console.error('データを読み込めませんでした:', error));
     } else if (event.target.classList.contains('tagCount')) {
       const tag = event.target.parentNode.dataset.tag;
-      fetch('/contents.json')
+      fetch('/articles.json')
         .then(response => response.json())
         .then(data => {
           const taggedArticles = data.filter(article => article.tags.includes(tag));
@@ -182,14 +189,13 @@ document.querySelectorAll('.tag').forEach(item => {
 
           showArticles();
         })
-        .catch(error => console.error('データを読み込めませんでした:', error));
     }
   });
 });
 
 
 
-function updateIndexContent(startIndex, plusIndex) {
+function updateIndexArticles(startIndex, plusIndex) {
   // indexというIDを持つdiv要素を取得
 
   const indexDiv = document.getElementById('index');
