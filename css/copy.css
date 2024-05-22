@@ -1,0 +1,27 @@
+pre {
+    position: relative; /* 相対位置を設定 */
+   margin-top: -1em;
+    height: 70%;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+code{
+    overflow: auto; /* スクロール可能にする */
+}
+
+
+button {
+    position: absolute; /* 絶対位置を設定 */
+    top: 14px; /* 上から10pxの位置 */
+    right: 10px; /* 右から10pxの位置 */
+    background-color: #007bff; /* ボタンの背景色を設定 */
+    color: white; /* ボタンの文字色を白に設定 */
+    border: none; /* ボタンの境界線をなくす */
+    padding: 5px 10px; /* ボタンのパディングを設定 */
+    border-radius: 5px; /* ボタンの角を丸くする */
+    cursor: pointer; /* カーソルをポインタにする */
+}
+button:hover {
+    background-color: #0056b3; /* ボタンのホバー時の色 */
+}
