@@ -5,7 +5,13 @@
 
     <meta charset="UTF-8">
     <title>深海におよぐ猫</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <link rel="stylesheet" href="/css/copy.css" type="text/css">
     <link rel="stylesheet" href="/css/default.css" type="text/css">
     <script src="/js/foam.js" type="text/javascript"></script>
 </head>
@@ -15,27 +21,66 @@
     <div id="sideMenu_box"></div>
     <main>
 
-<h1>ubuntu Apache2 laravelの環境構築のメモ</h1>
+        <h1>ubuntu Composerのメモ</h1>
 
-<p>前提</p>
-<ul>
-    <li>ubuntuバージョン：22.04.4</li>
-    <pre>
-        <code>lsb_release -a</code>
+        <p>前提</p>
+        <ul>
+            <li>ubuntuバージョン：22.04.4</li>
+        </ul>
 
+        <br>
+        <p>バージョン確認</p>
+        <pre>
+            <code >lsb_release -a</code>
+        <button class="copy-btn">copy</button>
     </pre>
-    <pre>
-        <code>No LSB modules are available.
+
+
+        <p>実行結果</p>
+        <pre>
+        <code>
+            No LSB modules are available.
             Distributor ID: Ubuntu
             Description:    Ubuntu 22.04.4 LTS
             Release:        22.04
             
             Codename:       jammy</code>
         </pre>
-</ul>
 
+
+        <h2>出てきた問題</h2>
+        <p>phpをインストールし、2024/5/22最新のComposer(v 2.7.6)をインストールし、使おうとしたときphpバージョンが古くエラーが出てきた。</p>
+
+        <h2>解決方法</h2>
+        <p>ubuntu22.04.04は標準でphp8.1がインストールされてしまうようです。</p>
+        <p>なので、バージョンを指定してComposerに対応したバージョンをインストールする必要がある。</p>
+
+        <p>レポジトリの追加</p>
+        <pre>
+            <code>sudo add-apt-repository ppa:ondrej/php</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+
+        <p>パッケージリストを最新の状態に</p>
+        <pre>
+        <code>sudo apt update</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+
+        <p>phpのバージョンを指定してインストール(*は任意に変更)</p>
+        <p></p>
+        <pre>
+        <code>sudo apt install php8.*</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+
+        <br>
+        <p>私の場合はこれで実行できるようになったのでメモです。</p>
     </main>
+
     <script src="/js/parts.js"></script>
+    <script src="/js/copy.js" type="text/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>
