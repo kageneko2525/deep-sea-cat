@@ -4,7 +4,7 @@ var menuBtn = document.getElementById('menu_btn');
 var sideMenu = document.getElementById('side_menu');
 
 
-menuBtn.onclick = function () {
+function menuBtnCkick() {
   if (sideMenu.style.width === '250px') {
     sideMenu.style.width = '0';
   } else {
