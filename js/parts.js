@@ -6,9 +6,12 @@ fetch("/parts/sideMenu.html")
 .then((response) => response.text())
 .then((data) => {
     document.querySelector("#sideMenu_box").innerHTML = data;
+    window.onload = function() {
     loadSidemenuScript(); 
+    }
 });
-window.onload = loadSidemenuScript() {
+
+function loadSidemenuScript() {
     const script = document.createElement('script');
     script.src = '/js/sideMenu.js';
     document.body.appendChild(script); 
