@@ -8,10 +8,9 @@ fetch("/parts/sideMenu.html")
     document.querySelector("#sideMenu_box").innerHTML = data;
     loadSidemenuScript(); 
 });
-window.onload = function() {
-function loadSidemenuScript() {
+window.onload = loadSidemenuScript() {
     const script = document.createElement('script');
     script.src = '/js/sideMenu.js';
     document.body.appendChild(script); 
 }
-}
+
