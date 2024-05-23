@@ -21,3 +21,9 @@ function loadSidemenuScript() {
 }
 
 
+function loadSidemenuScript() {
+    const script = document.createElement('script');
+    script.src = '/js/index.js';
+    document.body.appendChild(script); 
+}
+
