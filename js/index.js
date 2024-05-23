@@ -30,7 +30,7 @@ function loadArticles() {
     })
     
 }
-
+loadArticles()
 // 記事を表示する関数
 function showArticles() {
 
@@ -205,6 +205,7 @@ function updateIndexArticles(startIndex, plusIndex) {
   // div要素の内容を新しいテキストに変更
   indexDiv.textContent = newText;
 }
+
 
 
 
