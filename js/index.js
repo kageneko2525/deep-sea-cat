@@ -28,7 +28,7 @@ function loadArticles() {
       // 記事の総数を表示
       document.querySelector('.allTagCount').textContent = articles.length;
     })
-    
+
 }
 loadArticles()
 // 記事を表示する関数
@@ -41,7 +41,10 @@ function showArticles() {
   articlesContainer.innerHTML = '';
   const endIndex = Math.min(currentIndex + articlesPerPage, articles.length);
   updateIndexArticles(currentIndex, endIndex);
+  const table = document.createElement('table');
   for (let i = currentIndex; i < endIndex; i++) {
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
     const article = articles[i];
     const link = document.createElement('a');
     link.href = article.path;
@@ -54,12 +57,17 @@ function showArticles() {
     const formattedDate = formatDate(article.post_date);
     const formattedUpDate = formatDate(article.last_updated);
     dateParagraph.textContent = `投稿日時: ${formattedDate} / 最終更新: ${formattedUpDate}`;
+
+
     articleDiv.appendChild(heading);
     articleDiv.appendChild(dateParagraph);
     link.appendChild(articleDiv);
-    articlesContainer.appendChild(link);
-    articlesContainer.appendChild(document.createElement('br'));
+    // article.appendChild(link);
+    td.appendChild(link)
+    tr.appendChild(td)
+    table.appendChild(tr)
   }
+  articlesContainer.appendChild(table);
 }
 
 // 前の10件を表示する関数
@@ -146,7 +154,7 @@ function allTagClick() {
 //タグをクリックしたときそのタグの記事を表示する関数
 function tagClick(p) {
   {
-   
+
     const tag = p.dataset.tag;
     fetch('/articles.json')
       .then(response => response.json())
@@ -210,36 +218,36 @@ function updateIndexArticles(startIndex, plusIndex) {
 
 
 fetch('/articles.json')
-.then(response => response.json())
-.then(data => {
-  let tagCounts = {}; // タグとその出現回数を格納するオブジェクト
+  .then(response => response.json())
+  .then(data => {
+    let tagCounts = {}; // タグとその出現回数を格納するオブジェクト
 
-  // 全ての投稿をループ
-  data.forEach(post => {
-    // 各投稿のタグを取得し、タグごとにカウントを行う
-    post.tags.forEach(tag => {
-      if (tagCounts[tag]) {
-        tagCounts[tag]++;
-      } else {
-        tagCounts[tag] = 1;
-      }
+    // 全ての投稿をループ
+    data.forEach(post => {
+      // 各投稿のタグを取得し、タグごとにカウントを行う
+      post.tags.forEach(tag => {
+        if (tagCounts[tag]) {
+          tagCounts[tag]++;
+        } else {
+          tagCounts[tag] = 1;
+        }
+      });
     });
-  });
 
-  // タグを出現回数でソート
-  let sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+    // タグを出現回数でソート
+    let sortedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
 
-  // ソートされたタグをHTMLに追加
-  let sideMenu = document.querySelector('.side_menu');
-  sortedTags.forEach(([tag, count]) => {
-    let tagElement = document.createElement('div');
-    let paragraph = document.createElement('p'); // pタグを作成
-    paragraph.textContent = `${tag} (${count})`;
-    paragraph.classList.add('tag'); // 'tag' クラスをpタグに追加
-    paragraph.dataset.tag = tag; // データ属性にタグ名を追加
-    paragraph.onclick = function () { tagClick(this); }; // onclickイベントを追加
-    tagElement.appendChild(paragraph); // pタグをdivタグに追加
-    sideMenu.appendChild(tagElement);
-  });
-})
-.catch(error => console.error('Error:', error));
+    // ソートされたタグをHTMLに追加
+    let sideMenu = document.querySelector('.side_menu');
+    sortedTags.forEach(([tag, count]) => {
+      let tagElement = document.createElement('div');
+      let paragraph = document.createElement('p'); // pタグを作成
+      paragraph.textContent = `${tag} (${count})`;
+      paragraph.classList.add('tag'); // 'tag' クラスをpタグに追加
+      paragraph.dataset.tag = tag; // データ属性にタグ名を追加
+      paragraph.onclick = function () { tagClick(this); }; // onclickイベントを追加
+      tagElement.appendChild(paragraph); // pタグをdivタグに追加
+      sideMenu.appendChild(tagElement);
+    });
+  })
+  .catch(error => console.error('Error:', error));
