@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         img.src = imageUrl;
         img.style.position = 'absolute';
         img.style.bottom = '-200px';
-        img.style.left = Math.random() * (window.innerWidth - 20) + 10 + 'px';
+        img.style.left = Math.random() * (window.innerWidth - 20)  + 'px';
         img.style.width = Math.random() * 3 + 10 + 'px';
         img.speed = Math.random() * 3 + 2;
         img.style.zIndex = -1;
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (parseInt(img.style.bottom) > window.innerHeight) {
             document.body.removeChild(img);
         } else {
-            img.style.left = parseFloat(img.style.left) + Math.sin(new Date().getTime() / 100) * 1 +  'px';
+            img.style.left = parseFloat(img.style.left) + Math.sin(new Date().getTime() / 100) * 0.5 +  'px';
             requestAnimationFrame(function () { moveImage(img); });
         }
     }
