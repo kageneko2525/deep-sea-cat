@@ -6,7 +6,7 @@
         "path": "./content/diary/2024/0430.html",
         "tags": [
             "更新"
-            ]
+        ]
     },
     {
         "post_date": "240504",
@@ -15,7 +15,7 @@
         "path": "./content/diary/2024/0504.html",
         "tags": [
             "更新"
-            ]
+        ]
     },
     {
         "post_date": "240513",
@@ -24,7 +24,7 @@
         "path": "./content/diary/2024/0513.html",
         "tags": [
             "更新"
-            ]
+        ]
     },
     {
         "post_date": "240522",
@@ -32,8 +32,9 @@
         "title": "Ubuntu Composerのメモ",
         "path": "./content/diary/2024/0522.html",
         "tags": [
-            "Ubuntu","Composer"
-            ]
+            "Ubuntu",
+            "Composer"
+        ]
     },
     {
         "post_date": "240531",
@@ -42,7 +43,15 @@
         "path": "./content/diary/2024/0531.html",
         "tags": [
             "更新"
-            ]
+        ]
+    },
+    {
+        "post_date": "240615",
+        "last_updated": "240615",
+        "title": "Remixに触れよう Node.jsインストール編",
+        "path": "./content/diary/2024/0615.html",
+        "tags": [
+            "Node.js","Remix"
+        ]
     }
-
 ]
