@@ -25,3 +25,41 @@ header {
 #menu_btn:hover {
     background-color: rgb(102, 102, 102);
 }
+
+.close{
+    width: 50%;
+    padding: 5%;
+    text-align:center;
+    padding-right: -50px;
+    background-color: black;
+    color: aliceblue;
+    margin: auto;
+}
+
+@media  (max-width: 1000px){
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background: linear-gradient(to bottom, rgba(0, 0, 139, 1) 0%, rgba(0, 0, 205, 1) 50%, rgba(0, 0, 255, 1) 100%);
+    }
+    
+    h1 a {
+        font-size: 70px;
+    }
+    #site_title {
+        margin: 0 auto;
+    }
+    
+    #site_title a{
+        text-decoration: none; 
+    }
+    
+    #menu_btn {
+        width: 60px;
+        height: 60px;
+        border: solid 2px black;
+        background-color: rgb(192, 206, 233);
+    }
+}  
