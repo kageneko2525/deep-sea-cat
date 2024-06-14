@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>深海におよぐ猫</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <link rel="stylesheet" href="/css/copy.css" type="text/css">
+    <link rel="stylesheet" href="/css/default.css" type="text/css">
+    <script src="/js/foam.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="header_box"></div>
+    <div id="sideMenu_box"></div>
+
+
+    <main>
+
+        <h1>Remixに触れてみよう part00：Node.jsのインストール</h1>
+        <p>前提</p>
+        <ul>
+            <li>2024/6/14 に実行</li>
+            <li>Windows10</li>
+        </ul>
+
+
+        <p>みなさまこんにちは！</p>
+        <p>最近で話題になったのは、ドワンゴがランサムウェアによって、大規模な影響を受けていることだと思います。</p>
+        <p>ドワンゴが運営しているサービスの一つnikonikoも影響を受け一時全面的にサービスが利用できなくなっていました。</p>
+        <p>そのなかで、ニコニコ動画が一部機能のみを提供し始めました。</p>
+        <figure>
+            <img src="/images/nikoniko.png" alt="nikoniko">
+            <figcaption><a href="https://blog.nicovideo.jp/niconews/225099.html">"【追記】ニコニコサービスが利用できない状況について"より</a>
+            </figcaption>
+        </figure>
+        <p>そのサービスである「ニコニコ動画（Re:仮）」がRemixを使って開発されていると聞き、興味を持ったので少し触っていきたいと思います。</p>
+
+        <br>
+        <br>
+        <br>
+
+        <h2>インストール</h2>
+        <p>最初に：インストールした後や、プロファイル変更後次のコマンドが正しく認識されなかったりしたら、とりあえず再起動するのをおすすめします。</p>
+        <p>私はまだまだ初学者なため公式サイトを準拠してやっていきます。</p>
+        <p><a href="https://remix.run/">Remix公式ページ</a>のクイックスタートをもとにやっていきたいと思います。</p>
+        <p>クイックスタートでは、npxコマンドを使用されており、npxはnpmに同梱されているので、npmをインストールします。</p>
+        <p>そして、npmはNode.jsのパッケージ管理システムなため、Node.jsをインストールします。</p>
+
+        <br>
+        <br>
+        <br>
+
+        <h3>Node.jsのインストール</h3>
+        <p><a href="https://nodejs.org/en/">公式サイト</a>インストールできますが、せっかくなのでコマンドでやっていこうと思います。</p>
+        <p><a href="https://nodejs.org/en/download/package-manager">公式サイトのダウンロードの方法を選択するページ</a>のやり方を参考にしていきます。</p>
+        <br>
+
+        <p>fnm(Node.jsのバージョン管理ツールのインストール)</p>
+        <p>このコマンドはお使いの環境によってコマンドが変わるので注意</p>
+        <pre>
+            <code >winget install Schniz.fnm</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+        <br>
+        <p>環境変数の設定をする。</p>
+        <p>powershellでプロファイルに環境変数を追加する。</p>
+        <p>追加する環境変数を確認する</p>
+        <pre>
+            <code >fnm env</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+
+        <p>プロファイルに追加したら正しく追加できたか確認</p>
+        <pre>
+        <code>echo $env:FNM_DIR</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+        <pre>
+        <code>C:\Users\......\fnm</code>
+        </pre>
+        <br>
+        <br>
+        <p>node.jsのインストール</p>
+        <pre>
+        <code>fnm use --install-if-missing 20</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+
+        <p>環境変数が正しくないといわれたので<a href="https://github.com/Schniz/fnm#shell-setup">fnmのセットアップページ</a>より書いているコマンドをプロファイルに記載</p>
+        <pre>
+            <code>fnm env --use-on-cd | Out-String | Invoke-Expression</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+        
+
+        <p>正しく設定できたか確認</p>
+        <pre>
+            <code>node -v </code>
+            <button class="copy-btn">copy</button>
+            </pre>
+        <pre>
+            <code>npm -v</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+        <pre>
+            <code>npx -v</code>
+            <button class="copy-btn">copy</button>
+        </pre>
+
+        <p>実行結果</p>
+        <pre>
+            <code>v20.14.0</code>
+        </pre>
+        <pre>
+            <code>10.7.0</code>
+        </pre>
+        <pre>
+            <code>10.7.0</code>
+        </pre>
+        <p>正しく表示されたらインストールが成功していると思います。</p>
+
+        <p>Node.jsのインストールが終わったところで長くなってしまったので今回はここまで。</p>
+    </main>
+
+    <script src="/js/parts.js"></script>
+    <script src="/js/copy.js" type="text/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
