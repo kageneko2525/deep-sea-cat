@@ -1,25 +1,34 @@
 body {
+    display: flex;
+    flex-direction: column;
     margin: 0;
     color: rgb(231, 242, 255);
     background-color: rgb(6, 33, 49);
-
 }
 
 
 a {
     color: rgb(161, 236, 236);
 }
+
+img {
+    max-width: 100%;
+}
+
 #menu_btn {
     width: 30px;
     height: 30px;
 }
 
-main{
-    margin: 20%;
+main {
+    box-sizing: border-box;
+    margin: 50px auto;
+    max-width: 800px;
+    padding: 0 20px;
+    width: 100%;
 }
 
-@media screen and (max-width: 1000px){
-    main{
-        margin: 10%;
-    }
+/* 見出し部分のサイズ調節 */
+main > h1 {
+    font-size: 1.8rem;
 }

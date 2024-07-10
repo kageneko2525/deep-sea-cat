@@ -25,12 +25,3 @@ button {
 button:hover {
     background-color: #0056b3; /* ボタンのホバー時の色 */
 }
-
-
-@media  (max-width: 1000px){
-button{
-    font-size: 18px;
-    width: 80px;
-    height: 25px;
-}
-}
