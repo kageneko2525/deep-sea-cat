@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>深海におよぐ猫</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="/css/header.css" type="text/css">
+    <link rel="stylesheet" href="/css/copy.css" type="text/css">
+    <link rel="stylesheet" href="/css/default.css" type="text/css">
+    <script src="/js/foam.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="header_box"></div>
+    <div id="sideMenu_box"></div>
+
+
+    <main>
+
+        <h1>Remixに触れてみよう part01：Reactに触れる１</h1>
+
+        <p>こんにちは！</p>
+        <p>前回Remixに触れようpart00としてNode.jsのインストールまで行いました。</p>
+        <br>
+        <h2>Reactとは</h2>
+        <p>Remixや前回インストールしたものについて軽く説明しておこうと思います。</p>
+        <br>
+        <p>ReactとはUI構築のためのJavaScriptライブラリです。</p>
+        <p>Node.jsとはサーバー上でのJavaScript実行環境です。</p>
+        <p>タイトルにあるRemixはReactのスタックフレームワークです。</p>
+        <p>そのため、本題に入る前にフレームワーク元を触って勉強していこうと思います。</p>
+        <p>Reactのチュートリアルは<a href="https://ja.react.dev/learn/tutorial-tic-tac-toe">こちら</a>からご覧いただけます。</p>
+        <br><br><br>
+        <h2>プロジェクトの作成</h2>
+        <p>チュートリアルではCodeSandboxというエディタで行っていますがせっかくなので自分でプロジェクトを作るところからやっていきます。</p>
+        <br>
+        <p>プロジェクトの作成</p>
+        <pre>
+            <code>npx create-react-app プロジェクト名</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+        <p>私の場合、npmのバージョンが古いと警告が出たので、最新バージョンに更新してから行いました。</p>
+        <pre>
+        <code>npm install -g npm@latest</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+
+        <p>ローカルで実行するので脆弱性等は置いておきます。</p>
+        <br>
+        <p>プロジェクトのディレクトリに移動</p>
+        <pre>
+        <code>cd プロジェクト名</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+        <br>
+        <p>ローカルで実行</p>
+        <pre>
+        <code>npm start</code>
+        <button class="copy-btn">copy</button>
+        </pre>
+        <br>
+        <p><span>http://localhost:3000/</span>にブラウザでアクセスしてReactのロゴのページが表示されたら成功です。</p>
+        <br><br>
+        <p>Reactプロジェクトの作成から実行までを行いました。</p>
+        <p>長くなってしまったので次回本格的にチュートリアルの内容に入っていきたいと思います。</p>
+    </main>
+    <script src="/js/parts.js"></script>
+    <script src="/js/copy.js" type="text/javascript"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
