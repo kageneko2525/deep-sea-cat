@@ -48,7 +48,7 @@
     {
         "post_date": "240615",
         "last_updated": "240704",
-        "title": "Remixに触れよう Node.jsインストール編",
+        "title": "Remixに触れよう part00：Node.jsのインストール",
         "path": "./content/diary/2024/0615.html",
         "tags": [
             "Node.js","Remix"
@@ -61,6 +61,15 @@
         "path": "./content/diary/2024/0705.html",
         "tags": [
             "C#","自作","コンソール"
+        ]
+    },
+    {
+        "post_date": "240717",
+        "last_updated": "240717",
+        "title": "Remixに触れよう part01：Reactに触れる１",
+        "path": "./content/diary/2024/0717.html",
+        "tags": [
+            "Node.js","Remix","React"
         ]
     }
 ]
