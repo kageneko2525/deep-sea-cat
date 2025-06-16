@@ -71,5 +71,14 @@
         "tags": [
             "Node.js","Remix","React"
         ]
+    },
+    {
+        "post_date": "250616",
+        "last_updated": "250616",
+        "title": "3Dモデリングのすすめ",
+        "path": "./content/diary/2025/0616.html",
+        "tags": [
+            "Blender","3D"
+        ]
     }
 ]
