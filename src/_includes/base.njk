@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>{% if title %}{{ title }} | 深海でおよぐ猫{% else %}深海でおよぐ猫{% endif %}</title>
+	{% if description %}<meta name="description" content="{{ description }}">{% endif %}
+	<link rel="icon" href="/favicon.ico">
+
+	{# ---- 全ページ共通のCSS ---- #}
+	<link rel="stylesheet" href="/css/default.css">
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/sideMenu.css">
+
+	{# ---- ページ種別ごとの追加CSS ---- #}
+	{% if indexPage %}<link rel="stylesheet" href="/css/index.css">{% endif %}
+	{% if codeHighlight %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/atom-one-dark.min.css">
+	<link rel="stylesheet" href="/css/copy.css">
+	{% endif %}
+
+	<script src="/js/foam.js"></script>
+</head>
+
+<body>
+	<div id="header_box"></div>
+	<div id="sideMenu_box"></div>
+
+	<main>
+{{ content | safe }}
+	</main>
+
+	{# ---- ページ種別ごとのスクリプト ---- #}
+	{% if indexPage %}
+	<script src="/js/indexParts.js"></script>
+	{% else %}
+	<script src="/js/parts.js"></script>
+	{% endif %}
+	{% if codeHighlight %}
+	<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+	<script src="/js/copy.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	{% endif %}
+</body>
+
+</html>
